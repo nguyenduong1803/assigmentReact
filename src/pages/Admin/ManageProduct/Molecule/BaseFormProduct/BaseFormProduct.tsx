@@ -1,43 +1,14 @@
-import { FormHelperText, Grid, IconButton, Stack, Typography } from '@mui/material';
+import { Grid } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import { PhotoCamera } from '@mui/icons-material';
-import ControlTextField from '../../../../../components/Atom/Form/ControlTextField';
-import ControlSelect2 from '../../../../../components/Atom/Form/ControlSelect2';
-import Buttons from '../../../../../components/Atom/Button/Button';
-import { useEffect, useState } from 'react';
-import { getProduct } from 'services/productService/ProductService';
-import { IProduct } from 'Types/Interface/Product';
+import ControlTextField from 'components/Atom/Form/ControlTextField';
+import ControlSelect2 from 'components/Atom/Form/ControlSelect2';
+import Buttons from 'components/Atom/Button/Button';
+
 //
 const BaseFormProduct = (props: any) => {
   const { fakeOptions, fakeCategoey, form, onSubmit } = props;
-  const [urlImage, setUrlImage] = useState<string>('');
+  const { control, handleSubmit } = form;
 
-  const {
-    control,
-    handleSubmit,
-    register,
-    watch,
-    data,
-    formState: { errors }
-  } = form;
-  const [file, named] = watch(['file', 'name']);
-
-  useEffect(() => {
-    if (file && file[0]) {
-      const readURL = (input: File) => {
-        setUrlImage(URL.createObjectURL(input));
-      };
-      readURL(file[0]);
-    }
-    const subscription = watch((value: IProduct) => {
-      // console.log(value.name);
-    });
-    (async () => {
-      const res = await getProduct({ search: named });
-      console.log(res);
-    })();
-    return () => subscription.unsubscribe();
-  }, [file, named]);
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
       <Grid container spacing={3}>
@@ -69,7 +40,7 @@ const BaseFormProduct = (props: any) => {
             control={control}
           />
         </Grid>
-        <Grid item xs={12} md={6}>
+        {/* <Grid item xs={12} md={6}>
           <Stack direction='row' spacing={2} alignItems='center'>
             <Typography variant='subtitle1'>Choose File</Typography>
             <IconButton color='primary' aria-label='upload picture' component='label'>
@@ -81,14 +52,15 @@ const BaseFormProduct = (props: any) => {
           <FormHelperText sx={{ color: '#d32f2f' }} variant='outlined'>
             {errors.file?.message && errors.file?.message}
           </FormHelperText>
-        </Grid>
+        </Grid> */}
       </Grid>
-      <Buttons type='submit'>Submit</Buttons>
+      <Buttons sx={{ mt: 3 }} type='submit'>
+        Submit
+      </Buttons>
     </Form>
   );
 };
 const Form = styled('form')({
-  maxWidth: '800px',
-  margin: '0 auto'
+  maxWidth: '800px'
 });
 export default BaseFormProduct;

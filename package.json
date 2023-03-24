@@ -68,9 +68,12 @@
     "@types/lodash": "^4.14.189",
     "@types/react-lazy-load-image-component": "^1.5.2",
     "@types/styled-components": "^5.1.26",
+    "autoprefixer": "^10.4.14",
     "dotenv-webpack": "^8.0.1",
     "eslint-config-prettier": "^8.6.0",
     "eslint-plugin-prettier": "^4.2.1",
-    "prettier": "^2.8.1"
+    "postcss": "^8.4.21",
+    "prettier": "^2.8.1",
+    "tailwindcss": "^3.2.7"
   }
 }

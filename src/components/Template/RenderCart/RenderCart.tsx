@@ -13,7 +13,7 @@ const RenderCart = () => {
   const cart: TypeCart[] = LocalStorage.get('cart');
   const list = cart?.map((item: TypeCart) => item.productId);
   const listId = list?.join(',');
-  const { data } = useQuery('productCart', () => getProductById({ listId }), {
+  const { data } = useQuery('productCart', () => getProductById(listId), {
     staleTime: 3000
   });
   return (

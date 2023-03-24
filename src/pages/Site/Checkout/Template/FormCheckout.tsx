@@ -2,7 +2,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useDispatch, useSelector } from 'react-redux';
 import BaseFormCheckout from '../Molecule/BaseFormCheckout';
-import { validationCheckout } from 'utils/Validate/FormCheckout';
+import { validationCheckout } from 'utils/yup/FormCheckout';
 import { selectCart } from 'redux/selector';
 import { AppDispatch } from 'redux/store';
 import ToastMess from 'components/Atom/ToastMess/ToastMess';

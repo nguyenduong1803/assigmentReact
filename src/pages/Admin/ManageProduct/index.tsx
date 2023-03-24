@@ -10,7 +10,7 @@ const ManageProduct = () => {
     <>
       <Stack direction='row' justifyContent='space-between' marginBottom={2}>
         <BasicBreadcrumbs />
-        <ButtonLink to='/manage/product/add'>Add Product</ButtonLink>
+        <ButtonLink to='/product/add'>Add Product</ButtonLink>
       </Stack>
       <TableProduct />
     </>

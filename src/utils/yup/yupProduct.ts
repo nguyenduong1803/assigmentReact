@@ -1,7 +1,8 @@
 import * as yup from 'yup';
 import Regexs from '../Regexs';
+export { yupResolver } from '@hookform/resolvers/yup';
 
-const validationProduct = yup.object().shape({
+const yupProduct = yup.object().shape({
   name: yup
     .string()
     .trim('Please remove the spaces')
@@ -33,9 +34,11 @@ const validationProduct = yup.object().shape({
     .required('required')
     .trim('Please remove the spaces')
     .matches(Regexs.number, 'only Number')
-    .default(''),
-  file: yup.mixed().test('required', 'Please choose  file', (value) => {
-    return value[0];
-  })
+    .default('')
+  // file: yup.mixed().test('required', 'Please choose  file', (value) => {
+  //   return value[0];
+  // })
 });
-export { validationProduct };
+type TFormProduct = yup.InferType<typeof yupProduct>;
+export type { TFormProduct };
+export { yupProduct };

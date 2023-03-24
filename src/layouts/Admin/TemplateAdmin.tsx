@@ -14,20 +14,18 @@ import Container from '@mui/material/Container';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import { Avatar, Paper } from '@mui/material';
+import { Avatar} from '@mui/material';
 //
 import { secondaryListItems, ListNavbar } from './ListItems';
-import { ReactNode } from 'react';
 import defaultImage from 'assets/illustrations/avatar_default.jpg';
+import { Outlet } from 'react-router-dom';
 
 const drawerWidth: number = 240;
 
 interface AppBarProps extends MuiAppBarProps {
   open?: boolean;
 }
-type TypeProps = {
-  children: ReactNode;
-};
+
 
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== 'open'
@@ -76,7 +74,7 @@ const Drawer = styled(MuiDrawer, {
 
 const mdTheme = createTheme();
 
-function TemplateAdmin(props: TypeProps) {
+function TemplateAdmin() {
   const [open, setOpen] = React.useState(true);
   const toggleDrawer = () => {
     setOpen(!open);
@@ -159,7 +157,7 @@ function TemplateAdmin(props: TypeProps) {
             maxWidth={false}
             sx={{ pt: 3, display: 'grid', gridTemplateRows: 'auto 1fr 24px', height: '100%' }}
           >
-            {props.children}
+           <Outlet/>
           </Container>
         </Box>
       </Box>

@@ -1,6 +1,6 @@
-import { AxiosRequestConfig } from 'axios';
-import { getTime } from 'date-fns';
-import HttpClient from '../../utils/HtppClient';
+import { TFormProduct } from 'utils/yup/yupProduct';
+import HttpClient from 'utils/HtppClient';
+import { CommonResponse } from 'Types/Interface/Common';
 
 interface IFilter {
   limit: number;
@@ -17,11 +17,8 @@ const getProduct = async (props: Partial<IFilter>) => {
     console.log(error);
   }
 };
-interface IId {
-  listId: string;
-}
 // get product by id
-const getProductById = async (listId: IId) => {
+const getProductById = async (listId: string) => {
   try {
     const res = await HttpClient.get(`productById/`, { params: listId });
     return res;
@@ -48,17 +45,9 @@ const addProduct = async (param: any) => {
     console.log(error);
   }
 };
-interface ParamUpdateUser {
-  name: string;
-  status: string;
-  describe: string;
-  file?: string;
-  quantity: string;
-  discount: string;
-  price: string;
-}
+
 // add product
-const updateProduct = async (id: string | undefined, data: ParamUpdateUser) => {
+const updateProduct = async (id: string | undefined, data: TFormProduct) => {
   try {
     return await HttpClient.put(`product/update/${id}`, data);
   } catch (error) {

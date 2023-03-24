@@ -1,0 +1,22 @@
+{
+  "products": [
+    {
+      "_id": "63872b036c802f688af78f57",
+      "name": "Iphone 12",
+      "describe": "asdf",
+      "price": 222,
+      "discount": 2,
+      "images": [
+        "https://res.cloudinary.com/duongnguyen1803/image/upload/v1669802754/devs_setup/ba13wwkh5fr9phn6btwu.jpg"
+      ],
+      "categories": "laptop",
+      "quantity": 2,
+      "status": "Còn hàng",
+      "timeCreate": "11/30/2022, 4:34:27 PM",
+      "comment": [],
+      "createdAt": "2022-11-30T10:05:55.419Z",
+      "updatedAt": "2022-11-30T10:05:55.419Z",
+      "__v": 0
+    }
+  ]
+}

@@ -6,6 +6,7 @@ import BasicBreadcrumbs from '../../../components/Atom/Breadcrumbs/Breadcrumbs';
 import ButtonLink from '../../../components/Atom/Button/ButtonLink';
 
 const ManageProduct = () => {
+
   return (
     <>
       <Stack direction='row' justifyContent='space-between' marginBottom={2}>

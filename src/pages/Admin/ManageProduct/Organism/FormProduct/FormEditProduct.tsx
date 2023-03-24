@@ -2,14 +2,16 @@ import { useForm } from 'react-hook-form';
 import { TFormProduct, yupProduct, yupResolver } from 'utils/yup/yupProduct';
 import { useEffect, useState } from 'react';
 import BaseFormProduct from '../../Molecule/BaseFormProduct/BaseFormProduct';
-import { getProductById, updateProduct } from 'services/productService/ProductService';
 import { useParams } from 'react-router-dom';
+import useProductSlice from 'hooks/useProductSlice';
+import { getBase64 } from 'utils/Base64';
 
 const fakeOptions = ['Còn hàng', 'Hết hàng'];
 const fakeCategoey = ['Điện thoại', 'laptop'];
 const FormEditProduct = (props: any) => {
-  const [data, setData] = useState<TFormProduct>();
+  const { handleUpdate, getProductById } = useProductSlice();
   const { id } = useParams();
+  const [data, setData] = useState<TFormProduct>();
 
   const form = useForm<TFormProduct>({
     mode: 'onChange',
@@ -17,8 +19,10 @@ const FormEditProduct = (props: any) => {
     defaultValues: yupProduct.getDefault()
   });
   const onSubmit = async (data: TFormProduct) => {
-
-    const res = await updateProduct(id,data);
+    const base64 = await getBase64(data?.file[0]);
+    const newData = { ...data, file: base64 };
+    console.log("update")
+    const res = await handleUpdate(id || '', newData as TFormProduct);
     console.log(res);
   };
   const options = {
@@ -28,12 +32,10 @@ const FormEditProduct = (props: any) => {
     onSubmit
   };
   useEffect(() => {
+    console.log(id);
     if (!id) return;
-    const fethData = async () => {
-      const res = await getProductById(id);
-      setData(res.data);
-    };
-    fethData();
+    const data = getProductById(id);
+    setData(data);
   }, [id]);
   // reset data
   useEffect(() => {

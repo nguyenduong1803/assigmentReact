@@ -60,10 +60,10 @@ export default function MoreVery(props: TypeProps) {
           }
         }}
       >
-        <LinkStyle to={`/manage/${tableName}/view/${id}`}>
+        <LinkStyle to={`/${tableName}/view/${id}`}>
           <MenuItem onClick={handleClose}>View</MenuItem>
         </LinkStyle>
-        <LinkStyle to={`/manage/${tableName}/edit/${id}`}>
+        <LinkStyle to={`/${tableName}/edit/${id}`}>
           <MenuItem onClick={handleClose}>Edit</MenuItem>
         </LinkStyle>
         <MenuItem onClick={handleShowModalDelete}>Delete</MenuItem>

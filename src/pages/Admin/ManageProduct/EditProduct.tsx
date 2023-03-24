@@ -1,6 +1,5 @@
 import { Typography } from '@mui/material';
 import React from 'react';
-import { useParams } from 'react-router-dom';
 import BasicBreadcrumbs from '../../../components/Atom/Breadcrumbs/Breadcrumbs';
 import Paper from '../../../components/Atom/Paper/Paper';
 import FormEditProduct from './Organism/FormProduct/FormEditProduct';

@@ -7,12 +7,13 @@ type Props = {
   id: string;
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
-  removeProduct: (id: string) => Promise<any>;
+  removeProduct: (id: string) => void;
 };
 
-export default function ModalDelete({ open, setOpen }: Props) {
+export default function ModalDelete({ id,open, setOpen,removeProduct }: Props) {
   const handleDelete = () => {
     console.log('Delete');
+    removeProduct(id)
   };
   return (
     <BasicModal title='Do you want delete product?' setOpen={setOpen} open={open}>

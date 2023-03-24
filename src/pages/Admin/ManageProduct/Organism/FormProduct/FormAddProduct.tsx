@@ -4,6 +4,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useEffect } from 'react';
 import BaseFormProduct from '../../Molecule/BaseFormProduct/BaseFormProduct';
 import { addProduct } from 'services/productService/ProductService';
+import { getBase64 } from 'utils/Base64';
 
 const fakeOptions = ['Còn hàng', 'Hết hàng'];
 const fakeCategoey = ['Điện thoại', 'laptop'];
@@ -15,10 +16,9 @@ const FormAddProduct = () => {
     defaultValues: yupProduct.getDefault()
   });
   const onSubmit = async (data: TFormProduct) => {
-    // const base64 = await getBase64(data.file[0]);
-    try {
-      await addProduct(data);
-    } catch (error) {}
+    const base64 = await getBase64(data.file[0]);
+    const newData = { ...data, file: base64 };
+    const res = await addProduct(newData);
   };
   const options = {
     fakeOptions,
@@ -26,6 +26,9 @@ const FormAddProduct = () => {
     form,
     onSubmit
   };
+  useEffect(() => {
+    console.log('err', form.formState.errors);
+  });
   useEffect(() => {
     console.log('err', form.formState.errors);
   });
